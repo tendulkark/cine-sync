@@ -1,13 +1,18 @@
 import { useEffect } from "react";
 import "./App.css";
 import { fetchDataFromApi } from "./utils/api";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getApiConfiguration, selectAllHome } from "./store/homeSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const { url } = useSelector(selectAllHome);
+  console.log("posts", url);
   useEffect(() => {
     const apiTest = () => {
       fetchDataFromApi("/movie/popular").then((res) => {
-        console.log(res);
+        dispatch(getApiConfiguration(res));
+        // console.log(res);
       });
     };
     apiTest();
@@ -15,7 +20,7 @@ function App() {
 
   return (
     <>
-      <div className="App">App</div>
+      <div className="App">App {url?.total_pages}</div>
       <div>Hello</div>
     </>
   );

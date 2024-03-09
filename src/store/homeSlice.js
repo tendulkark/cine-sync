@@ -16,5 +16,6 @@ export const homeSlice = createSlice({
   },
 });
 
+export const selectAllHome = (state) => state.home;
 export const { getApiConfiguration, getGenres } = homeSlice.actions;
 export default homeSlice.reducer;
