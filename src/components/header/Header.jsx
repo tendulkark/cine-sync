@@ -3,7 +3,6 @@ const Header = () => {
   return (
     <section className="header">
       <div>Header</div>
-      <div>Header</div>
     </section>
   );
 };
