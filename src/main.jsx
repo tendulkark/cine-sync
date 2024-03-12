@@ -8,9 +8,8 @@ import { Provider } from "react-redux";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     {/* StirckMode helps to check twice that values returning is same, example see in console */}
-    {/* <React.StrictMode> */}
-    <App />
-
-    {/* </React.StrictMode> */}
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </Provider>
 );
