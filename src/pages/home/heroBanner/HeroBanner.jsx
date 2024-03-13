@@ -3,7 +3,8 @@ import "./style.scss";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { useSelector } from "react-redux";
-import { selectAllHome } from "../../../store/homeSlice";
+import Img from "../../../components/lazyLoadImg/Img";
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 
 const HeroBanner = () => {
   const { url } = useSelector((state) => state.home);
@@ -16,7 +17,7 @@ const HeroBanner = () => {
 
   useEffect(() => {
     const bg =
-      url.backdrop +
+      url?.backdrop +
       data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
     setBackGround(bg);
   }, [data]);
@@ -29,25 +30,32 @@ const HeroBanner = () => {
   return (
     <>
       <div className="heroBanner">
-        <div className="backdrop-img"></div>
-        <div className="wrapper">
-          <div className="heroBannerContent">
-            <span className="title">Welcome.</span>
-            <span className="subTitle">
-              Millions of movies, TV shows and people to dicover. Explore now.
-            </span>
+        {!loading && (
+          <div className="backdrop-img">
+            <Img src={backGround} />
           </div>
-          <div className="searchInput">
-            <input
-              type="text"
-              placeholder="Search for a movie or tv show"
-              onKeyUp={searchQueryHandler}
-              onChange={(e) => setQuery(e.target.value)}
-            />
+        )}
+        <div className="opacity-layer"></div>
+        <ContentWrapper>
+          <div className="wrapper">
+            <div className="heroBannerContent">
+              <span className="title">Welcome.</span>
+              <span className="subTitle">
+                Millions of movies, TV shows and people to dicover. Explore now.
+              </span>
+              <div className="searchInput">
+                <input
+                  type="text"
+                  placeholder="Search for a movie or tv show"
+                  onKeyUp={searchQueryHandler}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
 
-            <button>Search</button>
+                <button>Search</button>
+              </div>
+            </div>
           </div>
-        </div>
+        </ContentWrapper>
       </div>
     </>
   );
