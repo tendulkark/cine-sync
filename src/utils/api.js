@@ -13,6 +13,7 @@ export const fetchDataFromApi = async (url, params) => {
       headers: headers, //api.js headers
       params: params, //params getting from other
     });
+    // console.log("api js", data);
     return data;
   } catch (error) {
     console.log("API Error: ", error);

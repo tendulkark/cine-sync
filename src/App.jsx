@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import "./App.css";
 import { fetchDataFromApi } from "./utils/api";
 import { useDispatch, useSelector } from "react-redux";
 import { getApiConfiguration, selectAllHome } from "./store/homeSlice";
@@ -16,20 +15,26 @@ import PageNotFound from "./pages/404/PageNotFound";
 function App() {
   const dispatch = useDispatch();
   const { url } = useSelector(selectAllHome);
-  console.log("posts", url);
+  // console.log("posts", url);
   useEffect(() => {
-    const apiTest = () => {
-      fetchDataFromApi("/movie/popular").then((res) => {
-        dispatch(getApiConfiguration(res));
+    const fetchApiConfig = () => {
+      fetchDataFromApi("/configuration").then((res) => {
+        const url = {
+          backdrop: res.images.secure_base_url + "original",
+          poster: res.images.secure_base_url + "original",
+          profile: res.images.secure_base_url + "original",
+        };
+        // console.log(url);
+        dispatch(getApiConfiguration(url));
         // console.log(res);
       });
     };
-    apiTest();
+    fetchApiConfig();
   }, []);
 
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:mediaType/:id" element={<Details />} />
@@ -37,7 +42,7 @@ function App() {
         <Route path="/explore/:mediaType" element={<Explore />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
