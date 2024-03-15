@@ -22,7 +22,7 @@ const Header = () => {
     window.scrollTo(0, 0);
   }, [location]);
   const controlNavBar = () => {
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
     if (window.scrollY > 200) {
       if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("hide");
@@ -33,6 +33,7 @@ const Header = () => {
       setShow("top");
     }
     setLastScrollY(window.scrollY);
+    // console.log("Y direction", lastScrollY);
   };
 
   useEffect(() => {
