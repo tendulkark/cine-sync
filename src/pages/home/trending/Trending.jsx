@@ -22,7 +22,6 @@ const Trending = () => {
       </ContentWrapper>
 
       <Carousel data={data?.results} loading={loading} />
-      <div style={{ height: 500 }}></div>
     </div>
   );
 };

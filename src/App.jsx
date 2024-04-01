@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { fetchDataFromApi } from "./utils/api";
 import { useDispatch, useSelector } from "react-redux";
-import { getApiConfiguration, selectAllHome } from "./store/homeSlice";
+import {
+  getApiConfiguration,
+  getGenres,
+  selectAllHome,
+} from "./store/homeSlice";
 
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
@@ -16,21 +20,45 @@ function App() {
   const dispatch = useDispatch();
   const { url } = useSelector(selectAllHome);
   // console.log("posts", url);
+
   useEffect(() => {
-    const fetchApiConfig = () => {
-      fetchDataFromApi("/configuration").then((res) => {
-        const url = {
-          backdrop: res.images.secure_base_url + "original",
-          poster: res.images.secure_base_url + "original",
-          profile: res.images.secure_base_url + "original",
-        };
-        // console.log(url);
-        dispatch(getApiConfiguration(url));
-        // console.log(res);
-      });
-    };
     fetchApiConfig();
+    genresCall();
   }, []);
+
+  const fetchApiConfig = () => {
+    fetchDataFromApi("/configuration").then((res) => {
+      const url = {
+        backdrop: res.images.secure_base_url + "original",
+        poster: res.images.secure_base_url + "original",
+        profile: res.images.secure_base_url + "original",
+      };
+      // console.log(url);
+      dispatch(getApiConfiguration(url));
+      // console.log(res);
+    });
+  };
+
+  const genresCall = async () => {
+    let promises = [];
+    let endPoints = ["tv", "movie"];
+    let allGenres = {};
+
+    endPoints.forEach((url) => {
+      promises.push(fetchDataFromApi(`/genre/${url}/list`));
+    });
+
+    const data = await Promise.all(promises);
+    // console.log(data);
+
+    data.map(({ genres }) => {
+      return genres.map((item) => (allGenres[item.id] = item));
+    });
+
+    dispatch(getGenres(allGenres));
+
+    // console.log("AllGenres", allGenres);
+  };
 
   return (
     <BrowserRouter>
