@@ -21,6 +21,7 @@ const Header = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
   const controlNavBar = () => {
     // console.log(window.scrollY);
     if (window.scrollY > 200) {

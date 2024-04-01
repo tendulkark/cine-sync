@@ -4,7 +4,7 @@ import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import SwitchTabs from "../../../components/switchingTabs/SwitchTabs";
 import useFetch from "../../../hooks/useFetch";
 import Carousel from "../../../components/carousel/Carousel";
-import CircleRating from "../../../components/circleRating/CircleRating";
+
 const Trending = () => {
   const [endPoint, setEndPoint] = useState("day");
 
@@ -22,7 +22,6 @@ const Trending = () => {
       </ContentWrapper>
 
       <Carousel data={data?.results} loading={loading} />
-      <CircleRating />
     </div>
   );
 };
