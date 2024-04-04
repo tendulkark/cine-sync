@@ -12,8 +12,11 @@ import CircleRating from "../../../components/circleRating/CircleRating";
 import Img from "../../../components/lazyLoadImg/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayIcon } from "./PlayBtn.jsx";
+import VideoPopup from "../../../components/videoPopup/VideoPopup.jsx";
 
 const DetailsBanner = ({ video, crew }) => {
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
@@ -38,11 +41,11 @@ const DetailsBanner = ({ video, crew }) => {
         <>
           {!!data && (
             <React.Fragment>
-              <div className="backdrop-img">
-                <Img src={url.backdrop + data?.backdrop_path} />
-              </div>
-              <div className="opacity-layer">
-                <ContentWrapper>
+              <ContentWrapper>
+                <div className="backdrop-img">
+                  <Img src={url.backdrop + data?.backdrop_path} />
+                </div>
+                <div className="opacity-layer">
                   <div className="content">
                     <div className="left">
                       {data?.poster_path ? (
@@ -65,7 +68,12 @@ const DetailsBanner = ({ video, crew }) => {
                       </div>
                       <div className="row">
                         <CircleRating rating={data?.vote_average.toFixed(1)} />
-                        <div className="playbtn" onClick={() => {}}>
+                        <div
+                          className="playbtn"
+                          onClick={() => {
+                            setVideoId(video.key), setShow(true);
+                          }}
+                        >
                           <PlayIcon />
                           <span className="text">Watch Trailer</span>
                         </div>
@@ -81,6 +89,7 @@ const DetailsBanner = ({ video, crew }) => {
                             <span className="text">{data.status}</span>
                           </div>
                         )}
+
                         {data.release_date && (
                           <div className="infoItem">
                             <span className="text bold">Release Date: </span>
@@ -89,6 +98,7 @@ const DetailsBanner = ({ video, crew }) => {
                             </span>
                           </div>
                         )}
+
                         {data.runtime && (
                           <div className="infoItem">
                             <span className="text bold">Runtime: </span>
@@ -142,8 +152,14 @@ const DetailsBanner = ({ video, crew }) => {
                       )}
                     </div>
                   </div>
-                </ContentWrapper>
-              </div>
+                </div>
+                <VideoPopup
+                  show={show}
+                  setShow={setShow}
+                  videoId={videoId}
+                  setVideoId={setVideoId}
+                />
+              </ContentWrapper>
             </React.Fragment>
           )}
         </>
