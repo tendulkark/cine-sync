@@ -31,11 +31,14 @@
   }
   .opacity-layer {
     width: 100%;
-    height: 250px;
     background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    //**********************************************
+    // Check Here to Size Modification *
+    // height: 250px;
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
+    //**********************************************
   }
 
   .content {
