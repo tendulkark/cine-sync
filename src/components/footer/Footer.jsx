@@ -22,13 +22,17 @@ const Footer = () => {
           <li className="menuItem">FAQ</li>
         </ul>
         <div className="infoText">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
+          At CineSync, we're passionate about bringing you the latest updates,
+          trailers, reviews, and insights from the world of cinema and
+          television. Whether you're a movie buff, a TV series enthusiast, or
+          simply looking for your next binge-worthy watch, we've got you
+          covered. Explore our extensive database of movies and TV shows,
+          spanning various genres, eras, and languages. From classic films to
+          the latest blockbusters, from beloved TV series to exciting new
+          releases, CineSync is your go-to source for discovering, exploring,
+          and enjoying the best of entertainment.
         </div>
+        <div className="infoText">🎥 Lights, camera, action! 🍿</div>
         <div className="socialIcons">
           <span className="icon">
             <FaFacebookF />
