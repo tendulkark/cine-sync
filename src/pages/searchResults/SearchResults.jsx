@@ -7,7 +7,7 @@ import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 
 import "./style.scss";
 import Spinner from "../../components/spinner/Spinner";
-import MovieCard from "../../components/movieCard.jsx/MovieCard";
+import MovieCard from "../../components/movieCard/MovieCard";
 
 const SearchResults = () => {
   const [data, setData] = useState(null);
