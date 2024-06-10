@@ -11,7 +11,7 @@ At CineSync, the magic of cinema and television comes alive. Start your cinemati
 🎥 Lights, camera, action! 🍿
 
 
-_Live Demo:_ [CineSync](https://cine-sync-one.vercel.app/)
+_Live Demo:_ [CineSync](https://cine-sync-tk.vercel.app/)
 
 ## Build with :
 * React
